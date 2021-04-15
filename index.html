@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mudit's Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            margin: 0;
+            padding: 0;
+        }       
+        .ibox-content {
+            background-color: #FFFFFF;
+            color: inherit;
+            padding: 15px 20px 20px 20px;
+            border-color: #E7EAEC;
+            border-image: none;
+            border-style: solid solid none;
+            border-width: 1px 0px;
+        }
+        #searchHeader {
+            overflow-y: visible;
+        }
+        @media (max-width: 576px) {  
+            #searchHeader {
+                max-height: 100px;
+            }
+        }
+        #brandingTitle {
+            font-size: 24px;
+            font-family: fantasy;
+            color: black;
+            font-weight: bold;
+        }
+        #branding {
+            padding: 0px;
+            display: inline-block;
+            text-align: center;
+            margin: 10px auto;
+        }
+        #searchBarArea {
+            display: inline-block;
+            background-color: #fefefe;
+            z-index: 2;
+            height: 50px;
+        }
+        #searchBar {
+            position: absolute; 
+            left: 0; 
+            right: 0; 
+            margin-left: auto; 
+            margin-right: auto;
+            background-color: #fefefe;
+            border: 1px solid #eee;
+            padding: 0px 18px;
+            border-radius: 25px;
+            box-shadow: 1px 1px 4px #ccc;
+        }
+        #searchBar:hover {
+            border: 1px solid #eee;
+            box-shadow: 1px 2px 4px #bbb;
+        }
+        #searchBar:focus {
+            border: 1px solid #eee;
+            outline: none;
+            box-shadow: 1px 2px 4px #bbb;
+        }
+        #searchBox {
+            background-color: inherit;
+            border: none!important;
+            box-shadow: none!important;
+        }
+        #searchBox:focus {
+            outline: none;
+            border: none!important;
+            box-shadow: none!important;
+        }
+        #searchSuggestions {
+            display: None;
+            max-height: 200px;
+            overflow-y: scroll;
+            color: #666;
+            padding-bottom: 10px;
+        }
+        #searchBar:focus-within > #searchSuggestions {
+            display: block;
+        }
+        div.searchSuggestionSeparator {
+            display: None;
+            border-top: 1px solid #ddd;
+        }
+        #searchBar:focus-within > div.searchSuggestionSeparator {
+            display: block;
+        }
+        #searchSuggestions > div {
+            width: 100%;
+            padding: 5px 5px;
+            font-size: 16px;
+        }
+        #searchSuggestions > div:hover {
+            background-color: #eee;
+        }
+        #content {
+            float: left;
+            max-height: 750px;
+            overflow-y: scroll;
+        }
+        #contentMeta {
+            margin: 20px 0 40px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .searchResult h3 {
+            margin-bottom: 0;
+            color: #1E0FBE;
+        }
+
+        .searchResult .searchLink {
+            color: #006621;
+            float: left;
+        }
+
+        .searchResult p {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .hrLine {
+            border-top: 1px solid #E7EAEC;
+            color: #ffffff;
+            background-color: #ffffff;
+            height: 1px;
+            margin: 20px 0;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 100;
+        }
+        #search, #searchContent {
+            border-left: 1px solid #E7EAEC;
+            float: left;
+        }
+
+        #contentRepo {
+            border: 1px solid #E7EAEC;
+            float: none;
+            margin: 20px auto;
+        }
+        .entryHeader {
+            padding: 10px 5px;
+            color: #666;
+            text-align: center;
+        }
+        .entryList {
+            height: 300px;
+            overflow-y: scroll;
+        }
+        .entry {
+            margin: 4px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+        td {
+            white-space: normal !important;
+            word-wrap: break-word;
+            max-width: 200px;
+        }
+        #contentEntryForm {
+            overflow-y: scroll;
+            float: none;
+            margin: 20px auto;
+        }
+        .form-field {
+            margin-bottom: 10px;
+        }
+        .borderless td, .borderless th {
+            border: none!important;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid bootstrap">
+    <div class="row">
+        <div id="search" class="col-md-8 col-sm-12 col-xs-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div id="searchHeader" class="row">
+                        <div id="branding" class="box col-md-3 col-sm-3 col-xs-12">
+                            <span id="brandingTitle">Mudit's Search</span>
+                        </div>
+                        <div id="searchBarArea" class="box col-md-9 col-sm-9 col-xs-12">
+                            <form action="#" method="get">
+                                <div class="" id="searchBar">
+                                    <input type="text" autocomplete="off" name="search" id="searchBox" class="form-control input-lg">
+                                    <div class="searchSuggestionSeparator"></div>
+                                    <div id="searchSuggestions">
+                                        <div>Mudit Saxena</div>
+                                        <div>Mohit Sharma</div>
+                                        <div>Madhav Maurya</div>
+                                        <div>Sindhu Ravindra</div>
+                                        <div>Nidhi Verma</div>
+                                        <div>Pavan Poddar</div>
+                                        <div>Erin Boor</div>
+                                        <div>Julie Wallace</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="content">
+                        <div class="hrLine"></div>
+
+                        <div id="contentMeta">Showing Results for "Mudit"</div>
+
+                        <div class="searchResult">
+                            <h3><a href="#">Mudit Saxena | LinkedIn</a></h3>
+                            <a href="#" class="searchLink">https://www.linkedin.com/muditsaxena01</a>
+                            <p>
+                                Tech Lead & Software Development Engineer - III at Innovaccer. Innovaccer. M.S. Ramaiah Institute Of Technology. New Delhi Area, India 500+ connections.
+                            </p>
+                        </div>
+                        <div class="hrLine"></div>
+                        <div class="searchResult">
+                            <h3><a href="#">Mudit Saxena | LinkedIn</a></h3>
+                            <a href="#" class="searchLink">www.linkedin.com/muditsaxena01</a>
+                            <p>
+                                Tech Lead & Software Development Engineer - III at Innovaccer. Innovaccer. M.S. Ramaiah Institute Of Technology. New Delhi Area, India 500+ connections.
+                            </p>
+                        </div>
+                        <div class="hrLine"></div>
+                        <div class="searchResult">
+                            <h3><a href="#">Mudit Saxena | LinkedIn</a></h3>
+                            <a href="#" class="searchLink">www.linkedin.com/muditsaxena01</a>
+                            <p>
+                                Tech Lead & Software Development Engineer - III at Innovaccer. Innovaccer. M.S. Ramaiah Institute Of Technology. New Delhi Area, India 500+ connections.
+                            </p>
+                        </div>
+                        <div class="hrLine"></div>
+<!--                         
+                        <div class="text-center">
+                            <div class="btn-group">
+                                <button class="btn btn-white" type="button"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                                <button class="btn btn-white">1</button>
+                                <button class="btn btn-white  active">2</button>
+                                <button class="btn btn-white">3</button>
+                                <button class="btn btn-white">4</button>
+                                <button class="btn btn-white">5</button>
+                                <button class="btn btn-white">6</button>
+                                <button class="btn btn-white">7</button>
+                                <button class="btn btn-white" type="button"><i class="glyphicon glyphicon-chevron-right"></i> </button>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="searchContent" class="col-md-4 col-sm-12 col-xs-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div id="contentRepo" class="col-xs-10">
+                            <div class="entryHeader">All Entries</div>
+                            <div class="entryList">
+                                <div class="entry">
+                                    <table class="table borderless table-responsive table-condensed">
+                                        <tbody>
+                                            <tr class="entryTitle">
+                                                <th>Title</th>
+                                                <td>Mudit Saxena | LinkedIn</td>
+                                            </tr>
+                                            <tr class="entryLink">
+                                                <th>Link</th>
+                                                <td>https://www.linkedin.com/muditsaxena01</td>
+                                            </tr>
+                                            <tr class="entryDescription">
+                                                <th>Description</th>
+                                                <td>Tech Lead & Software Development Engineer - III at Innovaccer. Innovaccer. M.S. Ramaiah Institute Of Technology. New Delhi Area, India 500+ connections.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="entry">
+                                    <table class="table borderless table-responsive table-condensed">
+                                        <tbody>
+                                            <tr class="entryTitle">
+                                                <th>Title</th>
+                                                <td>Mudit Saxena | LinkedIn</td>
+                                            </tr>
+                                            <tr class="entryLink">
+                                                <th>Link</th>
+                                                <td>https://www.linkedin.com/muditsaxena01</td>
+                                            </tr>
+                                            <tr class="entryDescription">
+                                                <th>Description</th>
+                                                <td>Tech Lead & Software Development Engineer - III at Innovaccer. Innovaccer. M.S. Ramaiah Institute Of Technology. New Delhi Area, India 500+ connections.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="contentEntryForm" class="col-xs-10">
+                            <form>
+                                <div class="form-outline form-field">
+                                <input type="text" id="entryTitle" placeholder="Title" class="form-control" />
+                                </div>
+                            
+                                <div class="form-outline form-field">
+                                <input type="text" id="entryLink" placeholder="Link" class="form-control" />
+                                </div>
+                            
+                                <div class="form-outline form-field">
+                                <textarea class="form-control" placeholder="Description"  id="entryDescription" rows="4"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	                        
+                    
+</script>
+</body>
+</html>
