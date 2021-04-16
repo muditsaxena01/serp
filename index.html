@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Mudit's Search</title>
@@ -11,81 +12,74 @@
     <script src="bundle.js"></script>
     <script src="index.js"></script>
 </head>
+
 <body>
-<div class="container-fluid bootstrap">
-    <div class="row">
-        <div id="search" class="col-md-8 col-sm-12 col-xs-12">
-            <div class="ibox">
-                <div class="ibox-content">
-                    <div id="searchHeader" class="row">
-                        <div id="branding" class="col-md-3 col-sm-3 col-xs-12">
-                            <span id="brandingTitle">Mudit's Search</span>
-                        </div>
-                        <div id="searchBarArea" class="col-md-9 col-sm-9 col-xs-12">
-                            <div class="" id="searchBar">
-                                <form id="searchForm">
-                                    <input type="text" autocomplete="off" name="search" id="searchBox" class="form-control input-lg">
-                                </form>
-                                <div id="searchList" style="display: none;" class="displayBlock">
+    <div class="container-fluid bootstrap">
+        <div class="row">
+            <div id="search" class="col-md-8 col-sm-12 col-xs-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div id="searchHeader" class="row">
+                            <div id="branding" class="col-md-3 col-sm-3 col-xs-12">
+                                <span id="brandingTitle">Mudit's Search</span>
+                            </div>
+                            <div id="searchBarArea" class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="" id="searchBar">
+                                    <form id="searchForm">
+                                        <input type="text" autocomplete="off" name="search" id="searchBox"
+                                            class="form-control input-lg">
+                                    </form>
+                                    <div id="searchList" style="display: none;" class="displayBlock">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="content">
-                        <div class="hrLine"></div>
-                        <div id="contentMeta"></div>
-                        <div id="mainContent"></div>
-<!--                         
-                        <div class="text-center">
-                            <div class="btn-group">
-                                <button class="btn btn-white" type="button"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                                <button class="btn btn-white">1</button>
-                                <button class="btn btn-white  active">2</button>
-                                <button class="btn btn-white">3</button>
-                                <button class="btn btn-white">4</button>
-                                <button class="btn btn-white">5</button>
-                                <button class="btn btn-white">6</button>
-                                <button class="btn btn-white">7</button>
-                                <button class="btn btn-white" type="button"><i class="glyphicon glyphicon-chevron-right"></i> </button>
-                            </div>
-                        </div> -->
+                        <div id="content">
+                            <div class="hrLine"></div>
+                            <div id="contentMeta"></div>
+                            <div id="mainContent"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="searchContent" class="col-md-4 col-sm-12 col-xs-12">
-            <div class="ibox">
-                <div class="ibox-content">
-                    <div class="row">
-                        <div id="contentRepo" class="col-xs-10">
-                            <div class="entryHeader">All Entries</div>
-                            <div id="entryList" class="entryList">
-                                
-                            </div>
-                        </div>
-                        <div id="contentEntryForm" class="col-xs-10">
-                            <form>
-                                <div class="form-outline form-field">
-                                <input type="text" id="entryTitle" placeholder="Title" class="form-control" required/>
-                                </div>
-                            
-                                <div class="form-outline form-field">
-                                <input type="text" id="entryLink" placeholder="Link" class="form-control" required/>
-                                </div>
-                            
-                                <div class="form-outline form-field">
-                                <textarea class="form-control" placeholder="Description"  id="entryDescription" rows="4" required></textarea>
-                                </div>
+            <div id="searchContent" class="col-md-4 col-sm-12 col-xs-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div id="contentRepo" class="col-xs-10">
+                                <div class="entryHeader">All Entries</div>
+                                <p>(List of all searchable entries)</p>
+                                <div id="entryList" class="entryList">
 
-                                <button type="submit" class="btn btn-primary btn-block">Save</button>
-                            </form>
+                                </div>
+                            </div>
+                            <div id="contentEntryForm" class="col-xs-10">
+                                <p>(Fill this form to add into the list of searchable entries)</p>
+                                <form>
+                                    <div class="form-outline form-field">
+                                        <input type="text" id="entryTitle" placeholder="Title" class="form-control"
+                                            required />
+                                    </div>
+
+                                    <div class="form-outline form-field">
+                                        <input type="text" id="entryLink" placeholder="Link" class="form-control"
+                                            required />
+                                    </div>
+
+                                    <div class="form-outline form-field">
+                                        <textarea class="form-control" placeholder="Description" id="entryDescription"
+                                            rows="4" required></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-                    
+
 </body>
 </html>
