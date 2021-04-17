@@ -83,35 +83,46 @@ function searchEntries() {
         pastSearches.unshift(query);
         localStorage.setItem('pastSearches', JSON.stringify(pastSearches));
     }
+    else {
+        return false;
+    }
 
     var searchResults = trie.getMatches(query);
     renderResults(searchResults);
 
 
     if (searchResults.length == 0) {
-        var minDistance = 999;
-        var minWord = null;
-        for (const wordIndex in knownWords) {
-            var knownWord = knownWords[wordIndex];
-            var distance = levenshtein(query.toLowerCase(), knownWord);
-            console.log(distance, knownWord);
-            if (distance <= 1) {
-                minDistance = distance;
-                minWord = knownWord;
-                break;
-            }
-            else {
-                if (minDistance > distance || (minDistance == distance && (query.toLowerCase()[0] === knownWord[0] || query.length === knownWord.length))) {
+        var queryWords = query.toLowerCase().replace(/[^\w\s]/gi, ' ').trim().split(' ').filter(function(e){return e});
+        var correctedQueryWords = [];
+        for (const qWordIndex in queryWords) {
+            var qWord = queryWords[qWordIndex];
+            var minDistance = 999;
+            var minWord = null;
+            for (const wordIndex in knownWords) {
+                var knownWord = knownWords[wordIndex];
+                var distance = levenshtein(qWord, knownWord);
+                if (distance <= 1) {
                     minDistance = distance;
                     minWord = knownWord;
+                    break;
+                }
+                else {
+                    if (minDistance > distance || (minDistance == distance && (qWord[0] === knownWord[0] || qWord.length === knownWord.length))) {
+                        minDistance = distance;
+                        minWord = knownWord;
+                    }
                 }
             }
+            if (minWord !== null && minDistance <=2) {
+                correctedQueryWords.push(minWord);
+            }
         }
-        if (minWord === null || minDistance > 2) {
+
+        if (queryWords.length !== correctedQueryWords.length) {
             $('#contentMeta').html(`No results for search "${query}"`);
         }
         else {
-            $('#contentMeta').html(`Did you mean <span style="cursor: pointer; color: #337ab7;" onClick="myFunc(this);">${minWord}</span>?`);
+            $('#contentMeta').html(`Did you mean <span style="cursor: pointer; color: #337ab7;" onClick="myFunc(this);">${correctedQueryWords.join(' ')}</span>?`);
         }
     }
     else {
@@ -151,7 +162,6 @@ $(document).ready(function(){
         if (index > -1) {
             newWords.splice(index, 1);
         }
-        console.log(newWords);
         for (const wordIndex in newWords) {
             var word = newWords[wordIndex].toLowerCase();
             if (word.length > 1) {
