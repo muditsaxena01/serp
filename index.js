@@ -9,13 +9,27 @@ function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
-function renderResults(results) {
+function renderResults(results, query) {
+    var queryWords = query.toLowerCase().split(' ').filter(function(e){return e});
     $('#mainContent').html('');
+
     results.forEach(result => {
+
+        var resultTitle = result.title;
+        var resultDesc = result.desc;
+
+        for (const qWordIndex in queryWords) {
+            var qWord = queryWords[qWordIndex];
+            var qWordRegex = new RegExp("(^|[^a-zA-Z0-9])(" + qWord + ")", "gi");
+
+            resultTitle = resultTitle.replaceAll(qWordRegex, '$1<span class="match">$2</span>');
+            resultDesc = resultDesc.replaceAll(qWordRegex, '$1<span class="match">$2</span>');
+        }
+
         var resultHtml = `<div class="searchResult">
-            <h3><a href="${result.link}">${result.title}</a></h3>
+            <h3><a href="${result.link}">${resultTitle}</a></h3>
             <a href="${result.link}" class="searchLink">${result.link}</a><br/>
-            <p>${result.desc}</p>
+            <p>${resultDesc}</p>
             <div class="hrLine"></div>
         </div>`
         $('#mainContent').append(resultHtml);
@@ -88,7 +102,7 @@ function searchEntries() {
     }
 
     var searchResults = trie.getMatches(query);
-    renderResults(searchResults);
+    renderResults(searchResults, query);
 
 
     if (searchResults.length == 0) {
